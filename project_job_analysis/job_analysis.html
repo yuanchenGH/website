@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project 1: Data Analysis</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Data Science Job Market Analysis</title>
+    <link rel="stylesheet" href="../styles.css">
     <script>
         function updateVisualization(section) {
             const visuals = {
-                "overview": "<p>This is an overview of the project. Key insights and summary go here.</p>",
+                "overview": "<div style='margin: 20px auto; text-align: center;'><img src=\"job_num_pie.png\" alt=\"Data Science Job Market Analysis Visualization\" style=\"max-width: 100%; height: auto; border: 1px solid #ccc;\"><p style=\"margin-top: 10px;\">Figure 1: Trends and demands in the Data Science job market.</p></div>",
                 "data-cleaning": "<p>Data cleaning process description and related visuals.</p>",
                 "analysis": "<p>Exploratory Data Analysis results and charts.</p>",
                 "conclusion": "<p>Conclusions drawn from the analysis.</p>"
             };
 
-            document.getElementById("visualization").innerHTML = visuals[section];
+            document.getElementById("visualization").innerHTML = visuals[section] || "<p>Select a section to see the details and visuals.</p>";
         }
     </script>
 </head>
 <body>
     <header>
-        <h1>Project 1: Data Analysis</h1>
+        <h1>Data Science Job Market Analysis</h1>
     </header>
     <div class="container">
         <h2>About the Project</h2>
@@ -30,6 +30,7 @@
         </p>
         <h3>Explore Sections</h3>
         <select onchange="updateVisualization(this.value)">
+            <option value="">-- Select a Section --</option>
             <option value="overview">Overview</option>
             <option value="data-cleaning">Data Cleaning</option>
             <option value="analysis">Analysis</option>
