@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 1: Data Analysis</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function updateVisualization(section) {
+            const visuals = {
+                "overview": "<p>This is an overview of the project. Key insights and summary go here.</p>",
+                "data-cleaning": "<p>Data cleaning process description and related visuals.</p>",
+                "analysis": "<p>Exploratory Data Analysis results and charts.</p>",
+                "conclusion": "<p>Conclusions drawn from the analysis.</p>"
+            };
+
+            document.getElementById("visualization").innerHTML = visuals[section];
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Project 1: Data Analysis</h1>
+    </header>
+    <div class="container">
+        <h2>About the Project</h2>
+        <p>
+            This project explores a dataset to uncover patterns, insights, and actionable information. 
+            Each step, from data cleaning to analysis, is documented here with interactive visuals.
+        </p>
+        <h3>Explore Sections</h3>
+        <select onchange="updateVisualization(this.value)">
+            <option value="overview">Overview</option>
+            <option value="data-cleaning">Data Cleaning</option>
+            <option value="analysis">Analysis</option>
+            <option value="conclusion">Conclusion</option>
+        </select>
+
+        <div id="visualization" style="margin-top: 20px;">
+            <p>Select a section to see the details and visuals.</p>
+        </div>
+    </div>
+</body>
+</html>
