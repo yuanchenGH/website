@@ -8,10 +8,16 @@
     <script>
         function updateVisualization(section) {
             const visuals = {
-                "overview": "<div style='margin: 20px auto; text-align: center;'><img src=\"job_num_pie.png\" alt=\"Data Science Job Market Analysis Visualization\" style=\"max-width: 100%; height: auto; border: 1px solid #ccc;\"><p style=\"margin-top: 10px;\">Figure 1: Trends and demands in the Data Science job market.</p></div>",
+                "overview": ` <div style="margin: 20px auto; text-align: center;">
+                                    <iframe title="visual_overview" width="1024" height="804" src="https://app.powerbi.com/view?r=eyJrIjoiMWM3MWZjY2ItZjNiZC00ZDIxLWI1OWEtMTZhMGViMWFjZmU2IiwidCI6IjA4MjFjNDM5LTg1YjgtNGZmMC04Y2U3LTAxMWUyZTdlMjJkNiIsImMiOjN9&pageName=3e154aaf408bc67a240b" frameborder="0" allowFullScreen="true"></iframe>
+                                    <p style="margin-top: 10px;">Figure 1: Overview by Power BI.</p>
+                                </div>`,
                 "data-cleaning": "<p>Data cleaning process description and related visuals.</p>",
                 "analysis": "<p>Exploratory Data Analysis results and charts.</p>",
-                "conclusion": "<p>Conclusions drawn from the analysis.</p>"
+                "conclusion": ` <div style="margin: 20px auto; text-align: center;">
+                                    <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTms53lrlz2-PQtJxk95p4893_9bZCsGRfFWFmFaWHyd31NLQEz9RYNsHG0ZUXGQQ/embed?start=false&loop=false&delayms=3000" frameborder="0" width="1280" height="749" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                                    <p style="margin-top: 10px;">Figure 2: Embedded PowerPoint Slide.</p>
+                                </div>`
             };
 
             document.getElementById("visualization").innerHTML = visuals[section] || "<p>Select a section to see the details and visuals.</p>";
