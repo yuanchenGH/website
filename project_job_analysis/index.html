@@ -4,23 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Science Job Market Analysis</title>
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="styles.css">
     <script>
+        document.addEventListener("DOMContentLoaded", () => {updateVisualization("overview");});
         function updateVisualization(section) {
             const visuals = {
                 "overview": ` <div style="margin: 20px auto; text-align: center;">
                                     <iframe title="visual_overview" width="1024" height="804" src="https://app.powerbi.com/view?r=eyJrIjoiMWM3MWZjY2ItZjNiZC00ZDIxLWI1OWEtMTZhMGViMWFjZmU2IiwidCI6IjA4MjFjNDM5LTg1YjgtNGZmMC04Y2U3LTAxMWUyZTdlMjJkNiIsImMiOjN9&pageName=3e154aaf408bc67a240b" frameborder="0" allowFullScreen="true"></iframe>
                                     <p style="margin-top: 10px;">Figure 1: Overview by Power BI.</p>
                                 </div>`,
+                "summary": ` <div style="margin: 20px auto; text-align: center;">
+                                    <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTms53lrlz2-PQtJxk95p4893_9bZCsGRfFWFmFaWHyd31NLQEz9RYNsHG0ZUXGQQ/embed?start=false&loop=false&delayms=3000" frameborder="0" width="1000" height="600" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                                    <p style="margin-top: 10px;">Figure 2: Embedded PowerPoint Slide.</p>
+                                </div>`,
+                "report": ` <div style="margin: 20px auto; text-align: center;">
+                                    <iframe src="report.pdf" frameborder="0" width="1000" height="600" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                                    <p style="margin-top: 10px;">Figure 2: Embedded PowerPoint Slide.</p>
+                                </div>`,                
                 "data-cleaning": ` <div style="margin: 20px auto; text-align: center;">
                                     <iframe title="visual_overview" width="1024" height="804" src="job_preprocessing.html" frameborder="0" allowFullScreen="true"></iframe>
                                     <p style="margin-top: 10px;">Figure 1: Overview by Power BI.</p>
                                 </div>`,
-                "analysis": "<p>Exploratory Data Analysis results and charts.</p>",
-                "conclusion": ` <div style="margin: 20px auto; text-align: center;">
-                                    <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTms53lrlz2-PQtJxk95p4893_9bZCsGRfFWFmFaWHyd31NLQEz9RYNsHG0ZUXGQQ/embed?start=false&loop=false&delayms=3000" frameborder="0" width="1280" height="749" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-                                    <p style="margin-top: 10px;">Figure 2: Embedded PowerPoint Slide.</p>
-                                </div>`
+                "salary": ` <div style="margin: 20px auto; text-align: center;">
+                                    <iframe title="visual_overview" width="1024" height="804" src="job_salary_analysis.html" frameborder="0" allowFullScreen="true"></iframe>
+                                    <p style="margin-top: 10px;">Figure 1: Overview by Power BI.</p>
+                                </div>`,
+                "skill": ` <div style="margin: 20px auto; text-align: center;">
+                                    <iframe title="visual_overview" width="1024" height="804" src="job_skill_analysis.html" frameborder="0" allowFullScreen="true"></iframe>
+                                    <p style="margin-top: 10px;">Figure 1: Overview by Power BI.</p>
+                                </div>`, 
+                "number": ` <div style="margin: 20px auto; text-align: center;">
+                                    <iframe title="visual_overview" width="1024" height="804" src="job_num_anaylsis.html" frameborder="0" allowFullScreen="true"></iframe>
+                                    <p style="margin-top: 10px;">Figure 1: Overview by Power BI.</p>
+                                </div>`,  
+                "location": ` <div style="margin: 20px auto; text-align: center;">
+                                    <iframe title="visual_overview" width="1024" height="804" src="job_location_analysis.html" frameborder="0" allowFullScreen="true"></iframe>
+                                    <p style="margin-top: 10px;">Figure 1: Overview by Power BI.</p>
+                                </div>`                                                           
             };
 
             document.getElementById("visualization").innerHTML = visuals[section] || "<p>Select a section to see the details and visuals.</p>";
@@ -34,16 +54,23 @@
     <div class="container">
         <h2>About the Project</h2>
         <p>
-            This project explores a dataset to uncover patterns, insights, and actionable information. 
-            Each step, from data cleaning to analysis, is documented here with interactive visuals.
+            As a job seeker, navigating hundreds or even thousands of job postings can be an arduous process. An applicant can spend 5-8 hours a day searching and applying for positions. As a modern-day computer science student interested in data science, automating the searching process can be a life saver, increase both the efficiency and quality of job searching. In this project, I aim to build a pipeline to collect job postings, glean insights using sophisticated AI tools, clean the data, and analyze them to derive comprehensive insights into the job market. Once built, it will save me a lot of time searching for a perfect match on the job market.
+        </p>
+        <h2>Methods</h2>
+        <p>
+            Data is collected using web scraping techniques, key words of Data Analyst and Data Scientist are used to collect web information of job postings, including, applicationsCount, applyType, applyUrl, benefits, companyId, companyName, companyUrl, contractType, description, experienceLevel, jobId, jobUrl, location, postedTime, posterFullName, posterProfileUrl, published date, salary, sector, title, and workType. Data is saved as .csv file and is processed in Visual Studio 2019 with anaconda environment, python version 3.11. OpenAI API and ChatGPT 4o-mini is called to extract more information from the description column for skills, salary and whether it’s a remote work. Even though the salary is already in the scraper response, some job postings don’t have that information under the salary section but in the description. Several libraries are adapted to match similar words together, such as K-means clustering from SKlearn and fuzzymatch. Seaborn and Matplotlib are used to plot visualizations.   
         </p>
         <h3>Explore Sections</h3>
         <select onchange="updateVisualization(this.value)">
-            <option value="">-- Select a Section --</option>
-            <option value="overview">Overview</option>
-            <option value="data-cleaning">Data Cleaning</option>
-            <option value="analysis">Analysis</option>
-            <option value="conclusion">Conclusion</option>
+            <!-- <option value="">-- Select a Section --</option> -->
+            <option value="overview" selected>Power BI Overview</option>
+            <option value="summary">Summary Slides</option>
+            <option value="report">Detailed Report</option>
+            <option value="data-cleaning">Data Preprocessing Notebook</option>
+            <option value="salary">Salary Analysis Notebook</option>
+            <option value="skill">Skill Analysis Notebook</option>
+            <option value="number">Job Number Analysis Notebook</option>
+            <option value="location">Location Analysis Notebook</option>
         </select>
 
         <div id="visualization" style="margin-top: 20px;">
