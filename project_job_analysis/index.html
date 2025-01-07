@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Science Job Market Analysis</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script>
+        function updateVisualization(section) {
+            const visuals = {
+                "overview": ` <div style="margin: 20px auto; text-align: center;">
+                                    <iframe title="visual_overview" width="1024" height="804" src="https://app.powerbi.com/view?r=eyJrIjoiMWM3MWZjY2ItZjNiZC00ZDIxLWI1OWEtMTZhMGViMWFjZmU2IiwidCI6IjA4MjFjNDM5LTg1YjgtNGZmMC04Y2U3LTAxMWUyZTdlMjJkNiIsImMiOjN9&pageName=3e154aaf408bc67a240b" frameborder="0" allowFullScreen="true"></iframe>
+                                    <p style="margin-top: 10px;">Figure 1: Overview by Power BI.</p>
+                                </div>`,
+                "data-cleaning": ` <div style="margin: 20px auto; text-align: center;">
+                                    <iframe title="visual_overview" width="1024" height="804" src="job_preprocessing.html" frameborder="0" allowFullScreen="true"></iframe>
+                                    <p style="margin-top: 10px;">Figure 1: Overview by Power BI.</p>
+                                </div>`,
+                "analysis": "<p>Exploratory Data Analysis results and charts.</p>",
+                "conclusion": ` <div style="margin: 20px auto; text-align: center;">
+                                    <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTms53lrlz2-PQtJxk95p4893_9bZCsGRfFWFmFaWHyd31NLQEz9RYNsHG0ZUXGQQ/embed?start=false&loop=false&delayms=3000" frameborder="0" width="1280" height="749" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                                    <p style="margin-top: 10px;">Figure 2: Embedded PowerPoint Slide.</p>
+                                </div>`
+            };
+
+            document.getElementById("visualization").innerHTML = visuals[section] || "<p>Select a section to see the details and visuals.</p>";
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Data Science Job Market Analysis</h1>
+    </header>
+    <div class="container">
+        <h2>About the Project</h2>
+        <p>
+            This project explores a dataset to uncover patterns, insights, and actionable information. 
+            Each step, from data cleaning to analysis, is documented here with interactive visuals.
+        </p>
+        <h3>Explore Sections</h3>
+        <select onchange="updateVisualization(this.value)">
+            <option value="">-- Select a Section --</option>
+            <option value="overview">Overview</option>
+            <option value="data-cleaning">Data Cleaning</option>
+            <option value="analysis">Analysis</option>
+            <option value="conclusion">Conclusion</option>
+        </select>
+
+        <div id="visualization" style="margin-top: 20px;">
+            <p>Select a section to see the details and visuals.</p>
+        </div>
+    </div>
+</body>
+</html>
