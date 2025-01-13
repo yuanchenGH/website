@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis of Employee Turnover at Salifort Motors</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {updateVisualization("overview");});
+        function updateVisualization(section) {
+            const visuals = {
+                "overview": ` <div style="margin: 20px auto; text-align: center;">
+                                    <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQktaIEypsgr74045r2LjTXI9r1Bgmhso7jQKSpSfp-zmzcz9Lil3apXLpG778fRA/embed?start=true&loop=true&delayms=60000" frameborder="0" width="1280" height="749" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                                    <p style="margin-top: 10px;">Executive Summary</p>
+                                </div>`                         
+            };
+
+            document.getElementById("visualization").innerHTML = visuals[section] || "<p>Select a section to see the details and visuals.</p>";
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Analysis of Employee Turnover at Salifort Motors</h1>
+    </header>
+    <div class="container">
+        <section class="introduction">
+            <h2>Introduction</h2>
+            <p>
+                This is a fictional data and is not related to real world companies.
+
+                The HR department at Salifort Motors wants to take some initiatives to improve employee satisfaction levels at the company. They collected data from employees, but now they don’t know what to do with it. They refer to me as a data analytics professional and ask me to provide data-driven suggestions based on my understanding of the data. They have the following question: what’s likely to make the employee leave the company?
+
+                My goals in this project are to analyze the data collected by the HR department and to build a model that predicts whether or not an employee will leave the company.
+
+                If I can predict employees likely to quit, it might be possible to identify factors that contribute to their leaving. Because it is time-consuming and expensive to find, interview, and hire new employees, increasing employee retention will be beneficial to the company.
+            </p>
+        </section>
+
+        <section class="method">
+            <h2>Method</h2>
+            <h3>Data Collection</h3>
+            <p>
+                The dataset that I'll be using in this lab contains 15,000 rows and 10 columns for the variables listed below. For more information about the data, refer to its source on <a href="https://www.kaggle.com/datasets/mfaisalqureshi/hr-analytics-and-job-prediction?select=HR_comma_sep.csv" target="_blank" rel="noopener noreferrer">Kaggle</a>.
+            </p>
+            <h3>EDA and Data Modeling</h3>
+            <p>
+                In this project, I conducted exploratory data analysis (EDA) to understand employee-related factors such as job satisfaction, performance evaluations, working hours, and tenure at the company. Key insights included identifying patterns in employee turnover and the influence of factors like promotion history, salary levels, and departmental differences. For predictive modeling, I used machine learning algorithms such as Logistic Regression, Decision Trees, and XGBoost to build a model that predicts employee attrition. The models were evaluated using metrics like accuracy, precision, recall, and ROC-AUC to ensure robust and actionable results. This approach not only highlighted key predictors of turnover but also provided data-driven insights for HR interventions to improve employee retention.
+            </p>    
+            
+        </section>
+
+        <section class="summary">
+            <h2>Summary</h2>
+            <p>
+                A summary of the results can be found in the following drop-down list. You can also explore the data analysis process on my 
+                <a href="https://github.com/yuanchenGH/data_analysis_employee_turnover_project" target="_blank" rel="noopener noreferrer">GitHub</a>.
+            </p>
+        </section>
+        <h3>Explore Sections</h3>
+        <select onchange="updateVisualization(this.value)">
+            <option value="overview" selected>Executive Summary</option>
+        </select>
+
+        <div id="visualization" style="margin-top: 20px;">
+            <p>Select a section to see the details and visuals.</p>
+        </div>
+    </div>
+</body>
+</html>
