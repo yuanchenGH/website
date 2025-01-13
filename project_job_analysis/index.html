@@ -10,7 +10,7 @@
         function updateVisualization(section) {
             const visuals = {
                 "overview": ` <div style="margin: 20px auto; text-align: center;">
-                                    <iframe title="visual_overview" width="1024" height="804" src="https://app.powerbi.com/view?r=eyJrIjoiMWM3MWZjY2ItZjNiZC00ZDIxLWI1OWEtMTZhMGViMWFjZmU2IiwidCI6IjA4MjFjNDM5LTg1YjgtNGZmMC04Y2U3LTAxMWUyZTdlMjJkNiIsImMiOjN9&pageName=3e154aaf408bc67a240b" frameborder="0" allowFullScreen="true"></iframe>
+                                    <iframe title="visual_overview" width="1200" height="600" src="https://app.powerbi.com/view?r=eyJrIjoiMWM3MWZjY2ItZjNiZC00ZDIxLWI1OWEtMTZhMGViMWFjZmU2IiwidCI6IjA4MjFjNDM5LTg1YjgtNGZmMC04Y2U3LTAxMWUyZTdlMjJkNiIsImMiOjN9&pageName=3e154aaf408bc67a240b" frameborder="0" allowFullScreen="true"></iframe>
                                     <p style="margin-top: 10px;">Figure 1: Overview by Power BI.</p>
                                 </div>`,
                 "summary": ` <div style="margin: 20px auto; text-align: center;">
@@ -21,26 +21,26 @@
                                     <iframe src="report.pdf" frameborder="0" width="1000" height="600" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
                                     <p style="margin-top: 10px;">Figure 2: Embedded PowerPoint Slide.</p>
                                 </div>`,                
-                "data-cleaning": ` <div style="margin: 20px auto; text-align: center;">
-                                    <iframe title="visual_overview" width="1024" height="804" src="job_preprocessing.html" frameborder="0" allowFullScreen="true"></iframe>
-                                    <p style="margin-top: 10px;">Figure 1: Overview by Power BI.</p>
-                                </div>`,
-                "salary": ` <div style="margin: 20px auto; text-align: center;">
-                                    <iframe title="visual_overview" width="1024" height="804" src="job_salary_analysis.html" frameborder="0" allowFullScreen="true"></iframe>
-                                    <p style="margin-top: 10px;">Figure 1: Overview by Power BI.</p>
-                                </div>`,
-                "skill": ` <div style="margin: 20px auto; text-align: center;">
-                                    <iframe title="visual_overview" width="1024" height="804" src="job_skill_analysis.html" frameborder="0" allowFullScreen="true"></iframe>
-                                    <p style="margin-top: 10px;">Figure 1: Overview by Power BI.</p>
-                                </div>`, 
-                "number": ` <div style="margin: 20px auto; text-align: center;">
-                                    <iframe title="visual_overview" width="1024" height="804" src="job_num_anaylsis.html" frameborder="0" allowFullScreen="true"></iframe>
-                                    <p style="margin-top: 10px;">Figure 1: Overview by Power BI.</p>
-                                </div>`,  
-                "location": ` <div style="margin: 20px auto; text-align: center;">
-                                    <iframe title="visual_overview" width="1024" height="804" src="job_location_analysis.html" frameborder="0" allowFullScreen="true"></iframe>
-                                    <p style="margin-top: 10px;">Figure 1: Overview by Power BI.</p>
-                                </div>`                                                           
+                // "data-cleaning": ` <div style="margin: 20px auto; text-align: center;">
+                //                     <iframe title="visual_overview" width="1024" height="804" src="job_preprocessing.html" frameborder="0" allowFullScreen="true"></iframe>
+                //                     <p style="margin-top: 10px;">Figure 1: Overview by Power BI.</p>
+                //                 </div>`,
+                // "salary": ` <div style="margin: 20px auto; text-align: center;">
+                //                     <iframe title="visual_overview" width="1024" height="804" src="job_salary_analysis.html" frameborder="0" allowFullScreen="true"></iframe>
+                //                     <p style="margin-top: 10px;">Figure 1: Overview by Power BI.</p>
+                //                 </div>`,
+                // "skill": ` <div style="margin: 20px auto; text-align: center;">
+                //                     <iframe title="visual_overview" width="1024" height="804" src="job_skill_analysis.html" frameborder="0" allowFullScreen="true"></iframe>
+                //                     <p style="margin-top: 10px;">Figure 1: Overview by Power BI.</p>
+                //                 </div>`, 
+                // "number": ` <div style="margin: 20px auto; text-align: center;">
+                //                     <iframe title="visual_overview" width="1024" height="804" src="job_num_anaylsis.html" frameborder="0" allowFullScreen="true"></iframe>
+                //                     <p style="margin-top: 10px;">Figure 1: Overview by Power BI.</p>
+                //                 </div>`,  
+                // "location": ` <div style="margin: 20px auto; text-align: center;">
+                //                     <iframe title="visual_overview" width="1024" height="804" src="job_location_analysis.html" frameborder="0" allowFullScreen="true"></iframe>
+                //                     <p style="margin-top: 10px;">Figure 1: Overview by Power BI.</p>
+                //                 </div>`                                                           
             };
 
             document.getElementById("visualization").innerHTML = visuals[section] || "<p>Select a section to see the details and visuals.</p>";
@@ -60,17 +60,23 @@
         <p>
             Data is collected using web scraping techniques, key words of Data Analyst and Data Scientist are used to collect web information of job postings, including, applicationsCount, applyType, applyUrl, benefits, companyId, companyName, companyUrl, contractType, description, experienceLevel, jobId, jobUrl, location, postedTime, posterFullName, posterProfileUrl, published date, salary, sector, title, and workType. Data is saved as .csv file and is processed in Visual Studio 2019 with anaconda environment, python version 3.11. OpenAI API and ChatGPT 4o-mini is called to extract more information from the description column for skills, salary and whether it’s a remote work. Even though the salary is already in the scraper response, some job postings don’t have that information under the salary section but in the description. Several libraries are adapted to match similar words together, such as K-means clustering from SKlearn and fuzzymatch. Seaborn and Matplotlib are used to plot visualizations.   
         </p>
+        <section class="summary">
+            <h2>Summary</h2>
+            <p>
+                A summary of the results can be found in the following drop-down list. You can also explore the data analysis process on my 
+                <a href="https://github.com/yuanchenGH/data_analysis_job_posting" target="_blank" rel="noopener noreferrer">GitHub</a>.
+            </p>
         <h3>Explore Sections</h3>
         <select onchange="updateVisualization(this.value)">
             <!-- <option value="">-- Select a Section --</option> -->
-            <option value="overview" selected>Power BI Overview</option>
+            <option value="overview" selected>Summary by Power BI</option>
             <option value="summary">Summary Slides</option>
             <option value="report">Detailed Report</option>
-            <option value="data-cleaning">Data Preprocessing Notebook</option>
+            <!-- <option value="data-cleaning">Data Preprocessing Notebook</option>
             <option value="salary">Salary Analysis Notebook</option>
             <option value="skill">Skill Analysis Notebook</option>
             <option value="number">Job Number Analysis Notebook</option>
-            <option value="location">Location Analysis Notebook</option>
+            <option value="location">Location Analysis Notebook</option> -->
         </select>
 
         <div id="visualization" style="margin-top: 20px;">

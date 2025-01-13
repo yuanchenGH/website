@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis of Steam Game Revenue and Supported Language</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {updateVisualization("overview");});
+        function updateVisualization(section) {
+            const visuals = {
+                "overview": ` <div style="margin: 20px auto; text-align: center;">
+                                    <iframe title="visual" width="1200" height="600" src="https://app.powerbi.com/view?r=eyJrIjoiZjZiZDhkY2MtMmQ1ZC00YzIzLWJhOGYtOTY1MWY2Zjc4NTVkIiwidCI6IjA4MjFjNDM5LTg1YjgtNGZmMC04Y2U3LTAxMWUyZTdlMjJkNiIsImMiOjN9&pageName=0e29a53f15bd9a72557c" frameborder="0" allowFullScreen="true"></iframe>
+                                    <p style="margin-top: 10px;">Project Summary and Visualization</p>
+                                </div>`,         
+                "data-cleaning": ` <div style="margin: 20px auto; text-align: center;">
+                                    <iframe title="visual_overview" width="1024" height="804" src="job_preprocessing.html" frameborder="0" allowFullScreen="true"></iframe>
+                                    <p style="margin-top: 10px;">Figure 1: Overview by Power BI.</p>
+                                </div>`,
+                "salary": ` <div style="margin: 20px auto; text-align: center;">
+                                    <iframe title="visual_overview" width="1024" height="804" src="job_salary_analysis.html" frameborder="0" allowFullScreen="true"></iframe>
+                                    <p style="margin-top: 10px;">Figure 1: Overview by Power BI.</p>
+                                </div>`,
+                "skill": ` <div style="margin: 20px auto; text-align: center;">
+                                    <iframe title="visual_overview" width="1024" height="804" src="job_skill_analysis.html" frameborder="0" allowFullScreen="true"></iframe>
+                                    <p style="margin-top: 10px;">Figure 1: Overview by Power BI.</p>
+                                </div>`, 
+                "number": ` <div style="margin: 20px auto; text-align: center;">
+                                    <iframe title="visual_overview" width="1024" height="804" src="job_num_anaylsis.html" frameborder="0" allowFullScreen="true"></iframe>
+                                    <p style="margin-top: 10px;">Figure 1: Overview by Power BI.</p>
+                                </div>`,  
+                "location": ` <div style="margin: 20px auto; text-align: center;">
+                                    <iframe title="visual_overview" width="1024" height="804" src="job_location_analysis.html" frameborder="0" allowFullScreen="true"></iframe>
+                                    <p style="margin-top: 10px;">Figure 1: Overview by Power BI.</p>
+                                </div>`                                                           
+            };
+
+            document.getElementById("visualization").innerHTML = visuals[section] || "<p>Select a section to see the details and visuals.</p>";
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Analysis of Steam Game Revenue and Supported Language</h1>
+    </header>
+    <div class="container">
+        <section class="introduction">
+            <h2>Introduction</h2>
+            <p>
+                Steam is one of the most popular online game distribution platforms, generating over $8 billion in revenue with a catalog of 90,000+ games. However, a significant portion of games on Steam sell very few copies. This can be attributed to the highly competitive nature of the gaming industry, rising costs of advertising and marketing, and increasing challenges in innovation.
+            </p>
+            <p>
+                As new games become more expensive to develop, understanding the factors that influence game revenue is crucial. One recurring concern in the gaming community is the lack of language support, which many players cite as a barrier to fully enjoying certain games. This project investigates the extent to which language support impacts game revenue.
+            </p>
+        </section>
+
+        <section class="method">
+            <h2>Method</h2>
+            <h3>Data Collection</h3>
+            <p>
+                Steam does not publicly report detailed sales or revenue data. However, third-party services and hobbyists scrape data from Steam’s website and app to estimate sales figures. For this analysis, two publicly available datasets were used:
+            </p>
+            <ul>
+                <li><strong>Gamalytic Dataset</strong>: Provides estimated revenue data for games.</li>
+                <li><strong>Kaggle Dataset</strong>: Contains information about supported languages and other attributes.</li>
+            </ul>
+            <p>Both datasets include game IDs and names, allowing them to be merged for analysis.</p>
+
+            <h3>Feature Engineering</h3>
+            <ul>
+                <li>
+                    <strong>One-Hot Encoding for Languages:</strong> The Kaggle dataset lists supported languages for each game, which were transformed into one-hot encoded variables to make them suitable for machine learning models. While the dataset includes over 100 languages, the analysis focuses on the top six (English, Chinese, Spanish, Portuguese, Russian, and Japanese) for practical reasons.
+                </li>
+                <li>
+                    <strong>Developer and Publisher Reputation:</strong> 
+                    Developer and publisher reputation likely impacts game sales, but no reliable data was available to quantify it directly. As a substitute, I used:
+                    <ul>
+                        <li><strong>Frequency:</strong> How often the developer or publisher appears in the dataset.</li>
+                        <li><strong>Total Review Count:</strong> The total number of reviews across all games by the developer or publisher.</li>
+                        <li><strong>Average Positive Review Rate:</strong> The percentage of positive reviews for their games.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Propensity Score Matching (PSM):</strong>
+                    PSM was employed to estimate the causal effect of language support on revenue by matching games with similar characteristics (covariates) but differing language support. This method is more suitable than regression for several reasons:
+                    <ul>
+                        <li>The data is observational and non-randomized.</li>
+                        <li>Covariates and language support are naturally imbalanced in the gaming industry.</li>
+                        <li>The dimensionality is high due to one-hot encoding of languages and genres, plus additional covariates.</li>
+                        <li>PSM helps estimate causal effects by reducing selection bias.</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <section class="summary">
+            <h2>Summary</h2>
+            <p>
+                A summary of the results can be found in the following drop-down list. You can also explore the data analysis process on my 
+                <a href="https://github.com/yuanchenGH/steam_localize" target="_blank" rel="noopener noreferrer">GitHub</a>.
+            </p>
+        </section>
+        <h3>Explore Sections</h3>
+        <select onchange="updateVisualization(this.value)">
+            <option value="overview" selected>Summary by Power BI</option>
+        </select>
+
+        <div id="visualization" style="margin-top: 20px;">
+            <p>Select a section to see the details and visuals.</p>
+        </div>
+    </div>
+</body>
+</html>

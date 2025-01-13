@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis of Steam Game Revenue and Supported Language</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {updateVisualization("overview");});
+        function updateVisualization(section) {
+            const visuals = {
+                "overview": ` <div style="margin: 20px auto; text-align: center;">
+                                    <iframe title="visual" width="1200" height="600" src="https://app.powerbi.com/view?r=eyJrIjoiZjZiZDhkY2MtMmQ1ZC00YzIzLWJhOGYtOTY1MWY2Zjc4NTVkIiwidCI6IjA4MjFjNDM5LTg1YjgtNGZmMC04Y2U3LTAxMWUyZTdlMjJkNiIsImMiOjN9&pageName=0e29a53f15bd9a72557c" frameborder="0" allowFullScreen="true"></iframe>
+                                    <p style="margin-top: 10px;">Project Summary and Visualization</p>
+                                </div>`,         
+                "data-cleaning": ` <div style="margin: 20px auto; text-align: center;">
+                                    <iframe title="visual_overview" width="1024" height="804" src="job_preprocessing.html" frameborder="0" allowFullScreen="true"></iframe>
+                                    <p style="margin-top: 10px;">Figure 1: Overview by Power BI.</p>
+                                </div>`,
+                "salary": ` <div style="margin: 20px auto; text-align: center;">
+                                    <iframe title="visual_overview" width="1024" height="804" src="job_salary_analysis.html" frameborder="0" allowFullScreen="true"></iframe>
+                                    <p style="margin-top: 10px;">Figure 1: Overview by Power BI.</p>
+                                </div>`,
+                "skill": ` <div style="margin: 20px auto; text-align: center;">
+                                    <iframe title="visual_overview" width="1024" height="804" src="job_skill_analysis.html" frameborder="0" allowFullScreen="true"></iframe>
+                                    <p style="margin-top: 10px;">Figure 1: Overview by Power BI.</p>
+                                </div>`, 
+                "number": ` <div style="margin: 20px auto; text-align: center;">
+                                    <iframe title="visual_overview" width="1024" height="804" src="job_num_anaylsis.html" frameborder="0" allowFullScreen="true"></iframe>
+                                    <p style="margin-top: 10px;">Figure 1: Overview by Power BI.</p>
+                                </div>`,  
+                "location": ` <div style="margin: 20px auto; text-align: center;">
+                                    <iframe title="visual_overview" width="1024" height="804" src="job_location_analysis.html" frameborder="0" allowFullScreen="true"></iframe>
+                                    <p style="margin-top: 10px;">Figure 1: Overview by Power BI.</p>
+                                </div>`                                                           
+            };
+
+            document.getElementById("visualization").innerHTML = visuals[section] || "<p>Select a section to see the details and visuals.</p>";
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Analysis of Steam Game Revenue and Supported Language</h1>
+    </header>
+    <div class="container">
+        <h2>About the Project</h2>
+        <p>
+            As a job seeker, navigating hundreds or even thousands of job postings can be an arduous process. An applicant can spend 5-8 hours a day searching and applying for positions. As a modern-day computer science student interested in data science, automating the searching process can be a life saver, increase both the efficiency and quality of job searching. In this project, I aim to build a pipeline to collect job postings, glean insights using sophisticated AI tools, clean the data, and analyze them to derive comprehensive insights into the job market. Once built, it will save me a lot of time searching for a perfect match on the job market.
+        </p>
+        <h2>Methods</h2>
+        <p>
+            Data is collected using web scraping techniques, key words of Data Analyst and Data Scientist are used to collect web information of job postings, including, applicationsCount, applyType, applyUrl, benefits, companyId, companyName, companyUrl, contractType, description, experienceLevel, jobId, jobUrl, location, postedTime, posterFullName, posterProfileUrl, published date, salary, sector, title, and workType. Data is saved as .csv file and is processed in Visual Studio 2019 with anaconda environment, python version 3.11. OpenAI API and ChatGPT 4o-mini is called to extract more information from the description column for skills, salary and whether it’s a remote work. Even though the salary is already in the scraper response, some job postings don’t have that information under the salary section but in the description. Several libraries are adapted to match similar words together, such as K-means clustering from SKlearn and fuzzymatch. Seaborn and Matplotlib are used to plot visualizations.   
+        </p>
+        <h3>Explore Sections</h3>
+        <select onchange="updateVisualization(this.value)">
+            <!-- <option value="">-- Select a Section --</option> -->
+            <option value="overview" selected>Power BI Overview</option>
+            <option value="data-cleaning">Data Preprocessing Notebook</option>
+            <option value="salary">Salary Analysis Notebook</option>
+            <option value="skill">Skill Analysis Notebook</option>
+            <option value="number">Job Number Analysis Notebook</option>
+            <option value="location">Location Analysis Notebook</option>
+        </select>
+
+        <div id="visualization" style="margin-top: 20px;">
+            <p>Select a section to see the details and visuals.</p>
+        </div>
+    </div>
+</body>
+</html>
