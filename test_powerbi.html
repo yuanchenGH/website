@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power BI Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; display: flex; }
+        .sidebar { width: 220px; background: #f4f4f4; padding: 15px; }
+        .sidebar button { display: block; width: 100%; margin-bottom: 10px; padding: 10px; cursor: pointer; background: #0078D4; color: white; border: none; border-radius: 5px; }
+        .sidebar button:hover { background: #005A9E; }
+        .content { flex-grow: 1; padding: 10px; }
+        iframe { width: 100%; height: 700px; border: none; }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar for Page Navigation -->
+    <div class="sidebar">
+        <h3>Navigate Dashboard</h3>
+        <button onclick="switchTab('Location')">Location</button>
+        <button onclick="switchTab('Trend')">Trend</button>
+        <button onclick="switchTab('Requirements')">Requirements</button>
+    </div>
+
+    <!-- Power BI Report -->
+    <div class="content">
+        <iframe id="powerBIFrame" 
+            src="https://app.powerbi.com/view?r=eyJrIjoiYjQ2ODllYzUtYzVlNi00YTM0LTkyODItOTBhMGFhMWI1ODIzIiwidCI6IjA4MjFjNDM5LTg1YjgtNGZmMC04Y2U3LTAxMWUyZTdlMjJkNiIsImMiOjN9&pageName=2c9f3a0caad70c0a90e6"
+            frameborder="0" allowFullScreen="true">
+        </iframe>
+    </div>
+
+    <script>
+        function switchTab(section) {
+            var iframe = document.getElementById("powerBIFrame");
+            // iframe.src = "https://app.powerbi.com/reportEmbed?reportId=573d7947-bbd0-430d-a34d-c1f55d4f0972&autoAuth=true&ctid=0821c439-85b8-4ff0-8ce7-011e2e7e22d6" + section + "&navContentPaneEnabled=false";
+            iframe.src = "https://app.powerbi.com/view?r=eyJrIjoiYjQ2ODllYzUtYzVlNi00YTM0LTkyODItOTBhMGFhMWI1ODIzIiwidCI6IjA4MjFjNDM5LTg1YjgtNGZmMC04Y2U3LTAxMWUyZTdlMjJkNiIsImMiOjN9&pageName=2c9f3a0caad70c0a90e6" + section + "&navContentPaneEnabled=false";
+        }
+    </script>
+
+</body>
+</html>
